@@ -5,8 +5,16 @@ defmodule DevationWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", DevationWeb do
-    pipe_through :api
+  scope "/api", DevationWeb.Api do
+    pipe_through [:api]
+
+    # User routes
+    get "/me", UserController, :index
+    post "/create", UserController, :create
+
+    # Document routes
+    get "/document/:document_id", DocumentController, :index
+    post "/document", DocumentController, :create
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
