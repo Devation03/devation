@@ -10,7 +10,8 @@ defmodule DevationWeb.Router do
 
     # User routes
     get "/me", UserController, :index
-    post "/create", UserController, :create
+    post "/sign-up", UserController, :sign_up
+    post "/sign-in", UserController, :sign_in
 
     # Document routes
     get "/document/:document_id", DocumentController, :index

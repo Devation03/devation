@@ -67,3 +67,7 @@ config :phoenix, :plug_init_mode, :runtime
 
 # Disable swoosh api client as it is only required for production adapters.
 config :swoosh, :api_client, false
+
+config :devation, Devation.Guardian,
+  issuer: "devation",
+  secret_key: "dummy_secret_key"
