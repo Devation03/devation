@@ -61,6 +61,11 @@ config :devation, Devation.Guardian,
   issuer: "devation",
   ttl: {7, :days}
 
+config :cors_plug,
+  origin: "*",
+  max_age: 86400,
+  methods: ["GET", "POST", "PATCH", "PUT", "DELETE"]
+
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 

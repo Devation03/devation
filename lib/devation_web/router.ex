@@ -5,7 +5,7 @@ defmodule DevationWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", DevationWeb.Api do
+  scope "/api/v1", DevationWeb.Api do
     pipe_through [:api]
 
     # User routes

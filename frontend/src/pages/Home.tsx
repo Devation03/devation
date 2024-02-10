@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import { withLayout } from "../layout/layout";
 
-export const Home = () => {
+const Home = () => {
   const [mousePos, setMousePos] = useState<{ x: number; y: number }>({
     x: 0,
     y: 0,
@@ -32,3 +33,5 @@ export const Home = () => {
     </div>
   );
 };
+
+export default withLayout(Home);
