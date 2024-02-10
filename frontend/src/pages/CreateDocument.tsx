@@ -1,8 +1,9 @@
 import { ChangeEvent, useState } from "react";
 import { Loader2Icon } from "../icons/lucide-react";
 import { Text } from "../components/ui/typography";
+import { withLayout } from "../layout/layout";
 
-export const CreateDocument = () => {
+const CreateDocument = () => {
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
 
@@ -50,3 +51,5 @@ export const CreateDocument = () => {
     </div>
   );
 };
+
+export default withLayout(CreateDocument);

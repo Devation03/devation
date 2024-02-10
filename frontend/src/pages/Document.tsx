@@ -1,7 +1,8 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import useChannel from "../hooks/use-channel";
+import { withLayout } from "../layout/layout";
 
-export const Document = () => {
+const Document = () => {
   const [message, setMessage] = useState("");
 
   const [collabChannel] = useChannel("collab_room:lobby", {});
@@ -60,3 +61,5 @@ export const Document = () => {
     </div>
   );
 };
+
+export default withLayout(Document);
