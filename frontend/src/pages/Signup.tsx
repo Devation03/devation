@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Logo } from "../components/logo";
 import { Text } from "../components/ui/typography";
 import { useState } from "react";
 import axios from "axios";
+import { useAuthStore } from "../store/auth";
 
 type payloadType = {
   name: string;
@@ -12,6 +13,9 @@ type payloadType = {
 };
 
 const Signup = () => {
+  const navigate = useNavigate();
+  const [setAuthState] = useAuthStore((state) => [state.setAuthState]);
+
   const [payload, setPayload] = useState({
     name: "",
     email: "",
@@ -28,7 +32,8 @@ const Signup = () => {
       "http://localhost:4000/api/v1/sign-up",
       payload
     );
-    return response.data;
+    setAuthState({ isLoggedIn: true, token: response.token });
+    navigate("/documents");
   };
 
   return (
