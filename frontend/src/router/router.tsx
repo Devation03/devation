@@ -11,10 +11,13 @@ import Document from "../pages/Document";
 import CreateDocument from "../pages/CreateDocument";
 import Signin from "../pages/Signin";
 import Signup from "../pages/Signup";
+import { useAuthStore } from "../store/auth";
 
 const Router = () => {
+  const [authState] = useAuthStore((state) => [state.authState]);
+
   const PrivateRoute = () => {
-    const auth = false;
+    const auth = authState.isLoggedIn;
 
     return auth ? <Outlet /> : <Navigate to="/signin" />;
   };
@@ -24,7 +27,6 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<PrivateRoute />}>
           <Route path="/" element={<Home />} />
-          <Route path="/documents" element={<Documents />} />
           <Route path="/documents" element={<Documents />} />
           <Route path="/create-document" element={<CreateDocument />} />
           <Route path="/document/:id" element={<Document />} />

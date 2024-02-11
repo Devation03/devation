@@ -3,6 +3,8 @@ import { Logo } from "../components/logo";
 import { Text } from "../components/ui/typography";
 import { useState } from "react";
 import axios from "axios";
+import { useAuthStore } from "../store/auth";
+import { useNavigate } from "react-router-dom";
 
 type payloadType = {
   email: string;
@@ -10,6 +12,9 @@ type payloadType = {
 };
 
 const Signin = () => {
+  const navigate = useNavigate();
+  const [setAuthState] = useAuthStore((state) => [state.setAuthState]);
+
   const [payload, setPayload] = useState({
     email: "",
     password: "",
@@ -24,7 +29,8 @@ const Signin = () => {
       "http://localhost:4000/api/v1/sign-in",
       payload
     );
-    return response.data;
+    setAuthState({ isLoggedIn: true, token: response.token });
+    navigate("/documents");
   };
 
   return (
